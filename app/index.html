@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#7CB9A0">
+<title>KSX12 - Study Better, Together</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #7CB9A0;
+  --green-light: #A8D5C2;
+  --green-pale: #E8F5F0;
+  --green-dark: #5A9E85;
+  --cream: #F9F6F0;
+  --warm-white: #FDFCFA;
+  --text-dark: #2C3E35;
+  --text-mid: #5A6B63;
+  --text-light: #8FA396;
+  --purple: #8B7DC8;
+  --purple-light: #C5BDEB;
+  --purple-pale: #F0EEF9;
+  --blue: #5B9BD5;
+  --blue-pale: #EAF3FB;
+  --yellow: #F2C94C;
+  --yellow-pale: #FEF8E7;
+  --pink: #F0A0B0;
+  --card-shadow: 0 4px 20px rgba(100,160,130,0.12);
+  --card-shadow-hover: 0 8px 32px rgba(100,160,130,0.22);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Nunito', 'Noto Sans KR', sans-serif;
+  background: #DFF0E8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== PHONE SHELL ===== */
+.phone-shell {
+  width: 390px;
+  height: 844px;
+  background: var(--warm-white);
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25), inset 0 0 0 2px rgba(255,255,255,0.8);
+}
+/* ===== SCREENS ===== */
+.screen {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  flex-direction: column;
+  background: var(--warm-white);
+  overflow: hidden;
+}
+.screen.active { display: flex; }
+
+/* ===== SCROLLABLE CONTENT ===== */
+.scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-content::-webkit-scrollbar { display: none; }
+
+/* ===== TOP BAR ===== */
+.top-bar {
+  padding: 10px 24px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--warm-white);
+  position: relative;
+  z-index: 10;
+}
+.logo { display: flex; flex-direction: column; }
+.logo-text { font-size: 24px; font-weight: 900; color: var(--text-dark); line-height: 1; }
+.logo-text span { color: var(--green); }
+.logo-sub { font-size: 11px; color: var(--text-light); font-weight: 500; margin-top: 1px; }
+.top-icons { display: flex; gap: 14px; }
+.icon-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--green-pale);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  transition: all 0.2s;
+}
+.icon-btn:active { transform: scale(0.92); background: var(--green-light); }
+.icon-btn svg { width: 18px; height: 18px; stroke: var(--green-dark); fill: none; stroke-width: 2; }
+.badge {
+  position: absolute; top: -2px; right: -2px;
+  width: 16px; height: 16px;
+  background: var(--green);
+  border-radius: 50%; font-size: 9px;
+  color: white; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid white;
+}
+
+/* ===== HERO BANNER ===== */
+.hero-banner {
+  margin: 0 16px 16px;
+  background: linear-gradient(135deg, #E8F5F0 0%, #F5F0E8 100%);
+  border-radius: var(--radius);
+  padding: 24px 24px 20px;
+  position: relative;
+  overflow: hidden;
+  min-height: 170px;
+}
+.hero-banner::before {
+  content: '';
+  position: absolute; top: -20px; right: -20px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(124,185,160,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-tag {
+  font-size: 10px; font-weight: 800; letter-spacing: 1.5px;
+  color: var(--green); text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hero-title {
+  font-size: 20px; font-weight: 900;
+  color: var(--text-dark); line-height: 1.35;
+  max-width: 65%;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px;
+  background: var(--green);
+  color: white; border: none;
+  padding: 10px 18px; border-radius: 50px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+  font-family: inherit;
+}
+.hero-cta:active { transform: scale(0.95); background: var(--green-dark); }
+.hero-img {
+  position: absolute; right: 12px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px; line-height: 1;
+}
+.banner-dots {
+  display: flex; justify-content: center; gap: 6px;
+  margin: 8px 0 16px;
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green-light);
+}
+.dot.active { background: var(--green); width: 18px; border-radius: 3px; }
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  padding: 0 20px 10px;
+  font-size: 16px; font-weight: 800;
+  color: var(--text-dark);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.see-all {
+  font-size: 12px; color: var(--green);
+  font-weight: 700; cursor: pointer;
+}
+
+/* ===== CATEGORY GRID ===== */
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+.cat-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 18px 16px 16px;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+}
+.cat-card:active { transform: scale(0.97); box-shadow: var(--card-shadow-hover); }
+.cat-icon {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.cat-icon.green { background: var(--green-pale); }
+.cat-icon.yellow { background: var(--yellow-pale); }
+.cat-icon.purple { background: var(--purple-pale); }
+.cat-icon.blue { background: var(--blue-pale); }
+.cat-icon svg { width: 22px; height: 22px; stroke-width: 1.8; fill: none; }
+.cat-icon.green svg { stroke: var(--green); }
+.cat-icon.yellow svg { stroke: #D4A017; }
+.cat-icon.purple svg { stroke: var(--purple); }
+.cat-icon.blue svg { stroke: var(--blue); }
+.cat-name { font-size: 15px; font-weight: 800; color: var(--text-dark); line-height: 1.3; }
+.cat-sub { font-size: 10px; color: var(--text-light); margin-top: 3px; font-weight: 500; }
+.cat-arrow {
+  position: absolute; bottom: 14px; right: 14px;
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--green-pale);
+}
+.cat-arrow svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2.5; }
+.cat-card.yellow .cat-arrow { background: var(--yellow-pale); }
+.cat-card.yellow .cat-arrow svg { stroke: #D4A017; }
+.cat-card.purple .cat-arrow { background: var(--purple-pale); }
+.cat-card.purple .cat-arrow svg { stroke: var(--purple); }
+.cat-card.blue .cat-arrow { background: var(--blue-pale); }
+.cat-card.blue .cat-arrow svg { stroke: var(--blue); }
+.cat-deco { position: absolute; right: -10px; bottom: -10px; font-size: 55px; opacity: 0.13; }
+
+/* ===== SERVICE ICONS BAR ===== */
+.service-bar {
+  margin: 0 16px 20px;
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px 10px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  box-shadow: var(--card-shadow);
+}
+.svc-item { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.svc-icon { font-size: 20px; }
+.svc-label { font-size: 9px; font-weight: 700; color: var(--text-mid); text-align: center; line-height: 1.3; }
+.svc-sub { font-size: 8px; color: var(--text-light); text-align: center; line-height: 1.2; }
+
+/* ===== PRODUCTS ===== */
+.products-scroll {
+  display: flex; gap: 12px;
+  padding: 0 16px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.products-scroll::-webkit-scrollbar { display: none; }
+.product-card {
+  min-width: 140px;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.product-card:active { transform: scale(0.96); }
+.prod-img {
+  width: 100%; height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px;
+  background: var(--green-pale);
+}
+.prod-info { padding: 10px 10px 8px; }
+.prod-name { font-size: 12px; font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+.prod-price { font-size: 14px; font-weight: 900; color: var(--green-dark); margin-top: 4px; }
+.prod-price small { font-size: 9px; color: var(--text-light); text-decoration: line-through; margin-right: 3px; font-weight: 500; }
+.prod-fav {
+  float: right; margin-top: -2px;
+  font-size: 14px; cursor: pointer;
+}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav {
+  height: 80px;
+  background: white;
+  border-top: 1px solid rgba(124,185,160,0.12);
+  display: flex; align-items: center;
+  padding: 0 8px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+  position: relative;
+  z-index: 100;
+  flex-shrink: 0;
+}
+.nav-item {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  cursor: pointer;
+  padding: 6px 4px;
+  border-radius: 12px;
+  transition: all 0.2s;
+  position: relative;
+}
+.nav-item:active { background: var(--green-pale); }
+.nav-item svg { width: 22px; height: 22px; stroke-width: 1.8; stroke: var(--text-light); fill: none; }
+.nav-item.active svg { stroke: var(--green); }
+.nav-label { font-size: 9px; font-weight: 600; color: var(--text-light); }
+.nav-item.active .nav-label { color: var(--green); font-weight: 800; }
+.nav-badge {
+  position: absolute; top: 4px; right: 18px;
+  width: 16px; height: 16px;
+  background: var(--green);
+  border-radius: 50%; font-size: 9px;
+  color: white; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid white;
+}
+
+/* ===== SCREEN HEADERS ===== */
+.screen-header {
+  padding: 14px 20px 12px;
+  display: flex; align-items: center; gap: 12px;
+  background: white;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+.back-btn {
+  width: 36px; height: 36px;
+  background: var(--green-pale);
+  border-radius: 50%; border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.back-btn svg { width: 16px; height: 16px; stroke: var(--green-dark); fill: none; stroke-width: 2.5; }
+.screen-title { font-size: 17px; font-weight: 800; color: var(--text-dark); flex: 1; }
+
+/* ===== CATEGORY SCREEN ===== */
+.cat-screen-bg { background: var(--warm-white); }
+.cat-section-title {
+  padding: 16px 20px 8px;
+  font-size: 13px; font-weight: 700;
+  color: var(--text-light); text-transform: uppercase; letter-spacing: 0.8px;
+}
+.cat-list { padding: 0 16px; }
+.cat-row {
+  display: flex; align-items: center; gap: 14px;
+  background: white; border-radius: 16px;
+  padding: 14px 16px; margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  cursor: pointer; transition: all 0.2s;
+}
+.cat-row:active { transform: scale(0.98); background: var(--green-pale); }
+.cat-row-icon {
+  width: 44px; height: 44px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.cat-row-text { flex: 1; }
+.cat-row-name { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+.cat-row-count { font-size: 11px; color: var(--text-light); margin-top: 1px; }
+.cat-row-arrow { color: var(--text-light); font-size: 18px; }
+
+/* ===== WISHLIST SCREEN ===== */
+.empty-state {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px 30px; text-align: center;
+}
+.empty-icon { font-size: 70px; margin-bottom: 16px; }
+.empty-title { font-size: 18px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+.empty-sub { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+.empty-btn {
+  margin-top: 24px;
+  background: var(--green);
+  color: white; border: none;
+  padding: 12px 28px; border-radius: 50px;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+.wish-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; padding: 12px 16px;
+}
+.wish-card {
+  background: white; border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--card-shadow);
+  cursor: pointer; transition: all 0.2s;
+}
+.wish-card:active { transform: scale(0.97); }
+.wish-img {
+  width: 100%; height: 110px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 44px;
+}
+.wish-img.green-bg { background: var(--green-pale); }
+.wish-img.yellow-bg { background: var(--yellow-pale); }
+.wish-img.purple-bg { background: var(--purple-pale); }
+.wish-img.blue-bg { background: var(--blue-pale); }
+.wish-info { padding: 10px; }
+.wish-name { font-size: 12px; font-weight: 700; color: var(--text-dark); }
+.wish-price { font-size: 14px; font-weight: 900; color: var(--green-dark); margin-top: 3px; }
+.wish-heart {
+  float: right; font-size: 16px;
+  cursor: pointer; margin-top: -2px;
+}
+
+/* ===== CART SCREEN ===== */
+.cart-list { padding: 12px 16px; }
+.cart-item {
+  background: white; border-radius: 16px;
+  padding: 14px; margin-bottom: 10px;
+  display: flex; gap: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.cart-item-img {
+  width: 70px; height: 70px;
+  border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+}
+.cart-item-info { flex: 1; }
+.cart-item-name { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+.cart-item-variant { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.cart-item-price { font-size: 15px; font-weight: 900; color: var(--green-dark); margin-top: 6px; }
+.qty-ctrl {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 8px;
+}
+.qty-btn {
+  width: 26px; height: 26px; border-radius: 8px;
+  background: var(--green-pale); border: none;
+  font-size: 16px; color: var(--green-dark);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-weight: 900;
+}
+.qty-num { font-size: 14px; font-weight: 800; color: var(--text-dark); min-width: 20px; text-align: center; }
+.cart-del { font-size: 18px; cursor: pointer; margin-left: auto; align-self: flex-start; }
+.cart-summary {
+  background: white; margin: 0 16px 16px;
+  border-radius: var(--radius); padding: 16px 20px;
+  box-shadow: var(--card-shadow);
+}
+.summary-row {
+  display: flex; justify-content: space-between;
+  padding: 5px 0;
+}
+.summary-row span:first-child { font-size: 13px; color: var(--text-light); }
+.summary-row span:last-child { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+.summary-row.total span { font-size: 16px; font-weight: 900; }
+.summary-row.total span:last-child { color: var(--green-dark); }
+.divider { height: 1px; background: var(--green-pale); margin: 8px 0; }
+.checkout-btn {
+  width: calc(100% - 32px); margin: 0 16px 16px;
+  background: var(--green);
+  color: white; border: none;
+  padding: 16px; border-radius: 16px;
+  font-size: 15px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+  transition: all 0.2s;
+}
+.checkout-btn:active { transform: scale(0.98); background: var(--green-dark); }
+
+/* ===== PROFILE SCREEN ===== */
+.profile-header {
+  background: linear-gradient(180deg, var(--blue-pale) 0%, var(--warm-white) 100%);
+  padding: 16px 20px 24px;
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+.profile-header::after {
+  content: '🏫🌸🌸';
+  position: absolute; right: 10px; top: 20px;
+  font-size: 50px; opacity: 0.5;
+}
+.profile-row { display: flex; gap: 16px; align-items: flex-end; }
+.avatar-wrap { position: relative; }
+.avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--blue-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 42px;
+  border: 3px solid white;
+  box-shadow: 0 4px 14px rgba(91,155,213,0.25);
+}
+.avatar-edit {
+  position: absolute; bottom: 0; right: 0;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--green); border: 2px solid white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 11px;
+}
+.profile-info { flex: 1; }
+.profile-grade {
+  display: inline-block;
+  background: white; border-radius: 50px;
+  padding: 2px 10px; font-size: 11px; font-weight: 700;
+  color: var(--text-mid); margin-bottom: 4px;
+}
+.profile-name {
+  font-size: 22px; font-weight: 900; color: var(--text-dark);
+  display: flex; align-items: center; gap: 6px;
+}
+.verified { font-size: 16px; }
+.profile-motto { font-size: 12px; color: var(--text-mid); margin-top: 3px; }
+.goal-card {
+  background: white; border-radius: 16px;
+  margin: 12px 16px 0; padding: 14px 16px;
+  box-shadow: 0 2px 10px rgba(91,155,213,0.12);
+}
+.goal-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px;
+}
+.goal-icon { font-size: 16px; }
+.goal-label { font-size: 13px; font-weight: 800; color: var(--text-dark); }
+.goal-content { display: flex; align-items: center; gap: 12px; }
+.goal-text { flex: 1; }
+.goal-name { font-size: 14px; font-weight: 800; color: var(--text-dark); }
+.goal-dday { font-size: 12px; margin-top: 2px; }
+.goal-dday span { color: var(--blue); font-weight: 800; }
+.goal-dday em { color: var(--text-light); font-style: normal; }
+.goal-school-img { font-size: 44px; }
+.progress-bar { height: 6px; background: var(--blue-pale); border-radius: 3px; margin-top: 8px; }
+.progress-fill { height: 100%; background: var(--blue); border-radius: 3px; transition: width 1s; }
+.progress-pct { font-size: 11px; font-weight: 700; color: var(--blue); text-align: right; margin-top: 3px; }
+.profile-menu { padding: 12px 16px; }
+.menu-item {
+  background: white; border-radius: 16px;
+  padding: 14px 16px; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  cursor: pointer; transition: all 0.2s;
+}
+.menu-item:active { transform: scale(0.98); background: var(--green-pale); }
+.menu-item-icon {
+  width: 44px; height: 44px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.menu-item-text { flex: 1; }
+.menu-item-name { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+.menu-item-sub { font-size: 11px; color: var(--text-light); margin-top: 1px; }
+.menu-item-badge { font-size: 13px; font-weight: 800; color: var(--green); }
+.menu-item-arrow { color: var(--text-light); font-size: 18px; }
+
+/* ===== DOCUMENT VIEWER SCREEN ===== */
+.doc-screen { background: var(--purple-pale); }
+.doc-top {
+  background: white; padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  flex-shrink: 0;
+}
+.doc-back { width: 32px; height: 32px; background: var(--purple-pale); border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.doc-back svg { width: 14px; height: 14px; stroke: var(--purple); fill: none; stroke-width: 2.5; }
+.doc-title { flex: 1; font-size: 13px; font-weight: 700; color: var(--text-dark); }
+.doc-more { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; color: var(--text-mid); }
+.doc-toolbar {
+  background: white; padding: 10px 12px;
+  display: flex; gap: 6px;
+  border-bottom: 1px solid rgba(139,125,200,0.1);
+  flex-shrink: 0;
+}
+.tool-btn {
+  flex: 1; padding: 8px 4px;
+  border-radius: 10px; border: none;
+  background: transparent; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font-size: 9px; font-weight: 600; color: var(--text-light);
+  transition: all 0.2s; font-family: inherit;
+}
+.tool-btn.active { background: var(--yellow-pale); color: #D4A017; }
+.tool-btn svg { width: 18px; height: 18px; stroke-width: 1.8; stroke: currentColor; fill: none; }
+.tool-btn.active svg { stroke: #D4A017; }
+.doc-content { flex: 1; overflow-y: auto; padding: 16px; scrollbar-width: none; }
+.doc-content::-webkit-scrollbar { display: none; }
+.doc-chapter { font-size: 11px; font-weight: 800; color: var(--purple); letter-spacing: 1px; margin-bottom: 6px; }
+.doc-heading { font-size: 22px; font-weight: 900; color: var(--text-dark); line-height: 1.3; margin-bottom: 12px; }
+.doc-divider { height: 2px; background: linear-gradient(90deg, var(--purple) 0%, transparent 100%); margin-bottom: 14px; }
+.doc-para { font-size: 13px; color: var(--text-mid); line-height: 1.8; margin-bottom: 10px; }
+.highlight { background: var(--yellow); padding: 1px 2px; border-radius: 3px; }
+.underline-purple { text-decoration: underline; text-decoration-color: var(--purple); text-underline-offset: 3px; }
+.doc-sub-heading { font-size: 15px; font-weight: 800; color: var(--purple); margin: 14px 0 8px; display: flex; align-items: center; gap: 8px; }
+.doc-sub-num { font-size: 14px; }
+.doc-list { padding-left: 4px; margin-bottom: 12px; }
+.doc-list li { list-style: none; font-size: 13px; color: var(--text-mid); line-height: 1.7; padding: 4px 0; padding-left: 16px; position: relative; }
+.doc-list li::before { content: '•'; position: absolute; left: 0; color: var(--purple); font-weight: 900; }
+.doc-list li.purple-ul { text-decoration: underline; text-decoration-color: var(--purple); text-underline-offset: 2px; }
+.sticky-note {
+  position: relative; float: right; margin: 0 0 10px 10px;
+  background: #F0EEF9; border-radius: 8px;
+  padding: 10px 12px; width: 120px;
+  font-size: 12px; color: var(--purple);
+  font-weight: 700; line-height: 1.5;
+  box-shadow: 2px 3px 8px rgba(139,125,200,0.2);
+  transform: rotate(1.5deg);
+}
+.sticky-note2 {
+  background: #EAF3FB; color: var(--blue);
+  transform: rotate(-1deg);
+}
+.doc-strategy { background: white; border-radius: 14px; padding: 14px; margin: 10px 0; }
+.strategy-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--purple-pale); }
+.strategy-item:last-child { border: none; }
+.strategy-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.strategy-text { flex: 1; }
+.strategy-name { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+.strategy-desc { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.doc-footer {
+  background: white; padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px;
+  border-top: 1px solid rgba(139,125,200,0.1);
+  flex-shrink: 0;
+}
+.page-info { font-size: 13px; font-weight: 800; color: var(--purple); }
+.page-slider { flex: 1; accent-color: var(--purple); height: 4px; cursor: pointer; }
+.page-pct { font-size: 12px; color: var(--text-light); font-weight: 600; }
+.doc-nav {
+  background: white; display: flex;
+  border-top: 1px solid rgba(139,125,200,0.1);
+  flex-shrink: 0;
+}
+.doc-nav-item {
+  flex: 1; padding: 12px 4px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  cursor: pointer;
+}
+.doc-nav-item svg { width: 20px; height: 20px; stroke: var(--text-light); fill: none; stroke-width: 1.8; }
+.doc-nav-item span { font-size: 9px; color: var(--text-light); font-weight: 600; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.screen.active { animation: fadeIn 0.25s ease; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.hero-cta { animation: pulse 2.5s ease-in-out infinite; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--text-dark); color: white;
+  padding: 10px 20px; border-radius: 50px;
+  font-size: 12px; font-weight: 700;
+  white-space: nowrap; opacity: 0;
+  transition: all 0.3s; z-index: 9999;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== PRODUCT DETAIL ===== */
+.prod-detail-img {
+  width: 100%; height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 90px;
+  background: var(--green-pale);
+  flex-shrink: 0;
+}
+.prod-detail-body { padding: 20px 20px 0; }
+.prod-detail-tag {
+  display: inline-block; background: var(--green-pale);
+  color: var(--green-dark); font-size: 11px; font-weight: 700;
+  padding: 4px 10px; border-radius: 50px; margin-bottom: 8px;
+}
+.prod-detail-name { font-size: 20px; font-weight: 900; color: var(--text-dark); line-height: 1.3; }
+.prod-detail-price { font-size: 24px; font-weight: 900; color: var(--green-dark); margin: 8px 0; }
+.prod-detail-price small { font-size: 14px; color: var(--text-light); text-decoration: line-through; margin-right: 4px; font-weight: 500; }
+.prod-detail-desc { font-size: 13px; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; }
+.prod-actions {
+  display: flex; gap: 10px; padding: 0 20px 20px;
+  flex-shrink: 0;
+}
+.add-cart-btn {
+  flex: 1; background: var(--green);
+  color: white; border: none; padding: 14px;
+  border-radius: 14px; font-size: 14px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+}
+.buy-btn {
+  flex: 1; background: var(--green-dark);
+  color: white; border: none; padding: 14px;
+  border-radius: 14px; font-size: 14px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+}
+
+/* ===== SEARCH SCREEN ===== */
+.search-bar-wrap {
+  padding: 12px 16px;
+  display: flex; gap: 10px; align-items: center;
+  flex-shrink: 0;
+}
+.search-input {
+  flex: 1; background: var(--green-pale);
+  border: none; border-radius: 50px;
+  padding: 12px 18px; font-size: 14px;
+  font-family: inherit; color: var(--text-dark); outline: none;
+}
+.search-input::placeholder { color: var(--text-light); }
+.search-go {
+  width: 44px; height: 44px;
+  background: var(--green); border-radius: 50%; border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.search-go svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2.5; }
+.tags-wrap { padding: 4px 16px 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  background: white; border: 1.5px solid var(--green-light);
+  color: var(--green-dark); font-size: 12px; font-weight: 700;
+  padding: 6px 14px; border-radius: 50px; cursor: pointer;
+  transition: all 0.2s;
+}
+.tag:active { background: var(--green); color: white; }
+.search-results { padding: 0 16px; }
+.result-item {
+  background: white; border-radius: 14px;
+  padding: 12px; margin-bottom: 10px;
+  display: flex; gap: 12px; align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+.result-img {
+  width: 60px; height: 60px; border-radius: 10px;
+  background: var(--green-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; flex-shrink: 0;
+}
+.result-info { flex: 1; }
+.result-name { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+.result-sub { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.result-price { font-size: 14px; font-weight: 900; color: var(--green-dark); }
+</style>
+</head>
+<body>
+
+  <!-- ===================== HOME SCREEN ===================== -->
+  <div class="screen active" id="homeScreen">
+    <div class="top-bar">
+      <div class="logo">
+        <div class="logo-text">KSX<span>12</span></div>
+        <div class="logo-sub">Study better, together.</div>
+      </div>
+      <div class="top-icons">
+        <button class="icon-btn" onclick="showScreen('searchScreen')">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn" onclick="showToast('🔔 Bạn có 3 thông báo mới! / 새 알림 3개!')">
+          <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <div class="badge">3</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="scroll-content">
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-tag">📚 Back to Campus</div>
+        <div class="hero-title">Everything you need,<br>for every study day.</div>
+        <button class="hero-cta" onclick="showScreen('searchScreen')">Mua Ngay →<br><small style="font-size:9px;opacity:0.8">지금 쇼핑</small></button>
+        <div class="hero-img">🏮</div>
+      </div>
+      <div class="banner-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- Categories -->
+      <div class="cat-grid">
+        <div class="cat-card" onclick="showScreen('docViewScreen')">
+          <div class="cat-icon green">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>
+          </div>
+          <div class="cat-name">Tài Liệu Học<br>학습 자료</div>
+          <div class="cat-sub">깔끔한 정리, 완벽한 학습</div>
+          <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+          <div class="cat-deco">📄</div>
+        </div>
+        <div class="cat-card yellow" onclick="showScreen('catScreen')">
+          <div class="cat-icon yellow">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="cat-name">Văn Phòng Phẩm<br>문구류</div>
+          <div class="cat-sub">공부가 즐거워지는 아이템</div>
+          <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+          <div class="cat-deco">✏️</div>
+        </div>
+        <div class="cat-card purple" onclick="showScreen('docViewScreen')">
+          <div class="cat-icon purple">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="cat-name">Ghi Chú Nổi Bật<br>추천 노트</div>
+          <div class="cat-sub">검증된 노트로 효율 UP!</div>
+          <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+          <div class="cat-deco">📒</div>
+        </div>
+        <div class="cat-card blue" onclick="showScreen('catScreen')">
+          <div class="cat-icon blue">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <div class="cat-name">Bán Chạy<br>베스트셀러</div>
+          <div class="cat-sub">인기 상품 모아보기</div>
+          <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+          <div class="cat-deco">🛍️</div>
+        </div>
+      </div>
+
+      <!-- Service Bar -->
+      <div class="service-bar">
+        <div class="svc-item">
+          <div class="svc-icon">🚚</div>
+          <div class="svc-label">Giao Nhanh<br>빠른 배송</div>
+          <div class="svc-sub">1-2일 내 도착</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-icon">🔒</div>
+          <div class="svc-label">Thanh Toán An Toàn<br>안전한 결제</div>
+          <div class="svc-sub">다양한 결제 지원</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-icon">🎓</div>
+          <div class="svc-label">Giảm Giá HS<br>학생 할인</div>
+          <div class="svc-sub">스페셜 혜택 제공</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-icon">🎧</div>
+          <div class="svc-label">Hỗ Trợ<br>고객센터</div>
+          <div class="svc-sub">24/7 친절 상담</div>
+        </div>
+      </div>
+
+      <!-- Featured Products -->
+      <div class="section-title">
+        <span>Sản Phẩm Nổi Bật <span style="font-size:12px;color:var(--text-light)">추천 상품</span></span>
+        <span class="see-all" onclick="showScreen('catScreen')">Xem tất cả →</span>
+      </div>
+      <div class="products-scroll">
+        <div class="product-card" onclick="showProductDetail('📔','Sổ Tay Thông Minh','스마트 노트북','Sổ tay premium 200 trang, giấy chống nước','35.000₫','50.000₫')">
+          <div class="prod-img" style="background:var(--green-pale)">📔</div>
+          <div class="prod-info">
+            <div class="prod-name">Sổ Tay Smart<br>스마트 노트북</div>
+            <div class="prod-price"><small>50k</small>35.000₫ <span class="prod-fav">🤍</span></div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('✏️','Bộ Bút Màu Pastel','파스텔 색연필 세트','12 màu pastel chuẩn học sinh, không bay màu','45.000₫','65.000₫')">
+          <div class="prod-img" style="background:var(--yellow-pale)">✏️</div>
+          <div class="prod-info">
+            <div class="prod-name">Bút Màu Pastel<br>파스텔 색연필</div>
+            <div class="prod-price"><small>65k</small>45.000₫ <span class="prod-fav">❤️</span></div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('🗂️','File Tài Liệu A4','A4 서류 파일','Bộ file 10 ngăn, nhựa trong suốt cao cấp','28.000₫','40.000₫')">
+          <div class="prod-img" style="background:var(--purple-pale)">🗂️</div>
+          <div class="prod-info">
+            <div class="prod-name">File Tài Liệu A4<br>A4 서류 파일</div>
+            <div class="prod-price"><small>40k</small>28.000₫ <span class="prod-fav">🤍</span></div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('🖊️','Bút Highlight 6 Màu','형광펜 6색 세트','Highlight 6 màu neon, mực khô nhanh','22.000₫','35.000₫')">
+          <div class="prod-img" style="background:var(--blue-pale)">🖊️</div>
+          <div class="prod-info">
+            <div class="prod-name">Bút Highlight 6<br>형광펜 6색</div>
+            <div class="prod-price"><small>35k</small>22.000₫ <span class="prod-fav">🤍</span></div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('🐻','Gấu Bông Học Sinh','곰인형 KSX12','Linh vật KSX12, gấu bông mềm 25cm','120.000₫','150.000₫')">
+          <div class="prod-img" style="background:#F5F0FF">🐻</div>
+          <div class="prod-info">
+            <div class="prod-name">Gấu Bông KSX12<br>곰인형</div>
+            <div class="prod-price"><small>150k</small>120.000₫ <span class="prod-fav">❤️</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flash Sale -->
+      <div class="section-title" style="padding-top:4px">
+        <span>Flash Sale 🔥 <span style="font-size:12px;color:var(--text-light)">한정 할인</span></span>
+        <span style="background:#FF6B6B;color:white;font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px">02:45:12</span>
+      </div>
+      <div class="products-scroll">
+        <div class="product-card" onclick="showProductDetail('📐','Thước Kẻ Đa Năng','다기능 자','Thước kẻ 30cm + thước đo góc combo','15.000₫','30.000₫')">
+          <div class="prod-img" style="background:#FFF0F0">📐</div>
+          <div class="prod-info">
+            <div class="prod-name">Thước Đa Năng<br>다기능 자</div>
+            <div class="prod-price"><small>30k</small>15.000₫ <span style="background:#FF6B6B;color:white;font-size:9px;font-weight:800;padding:2px 5px;border-radius:4px">-50%</span></div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('📌','Ghim Màu 100 Cái','컬러 압정 100개','Hộp 100 ghim màu sắc đa dạng','12.000₫','25.000₫')">
+          <div class="prod-img" style="background:#FFF5F0">📌</div>
+          <div class="prod-info">
+            <div class="prod-name">Ghim Màu 100c<br>컬러 압정</div>
+            <div class="prod-price"><small>25k</small>12.000₫ <span style="background:#FF6B6B;color:white;font-size:9px;font-weight:800;padding:2px 5px;border-radius:4px">-52%</span></div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('📚','Kệ Sách Mini','미니 책꽂이','Kệ sách nhỏ gọn để bàn, 3 ngăn','45.000₫','90.000₫')">
+          <div class="prod-img" style="background:#F0F5FF">📚</div>
+          <div class="prod-info">
+            <div class="prod-name">Kệ Sách Mini<br>미니 책꽂이</div>
+            <div class="prod-price"><small>90k</small>45.000₫ <span style="background:#FF6B6B;color:white;font-size:9px;font-weight:800;padding:2px 5px;border-radius:4px">-50%</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="height:20px"></div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="showScreen('homeScreen')">
+        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="nav-label">Trang Chủ<br>홈</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('catScreen')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span class="nav-label">Danh Mục<br>카테고리</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('wishScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="nav-label">Yêu Thích<br>위시리스트</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('cartScreen')">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <div class="nav-badge">2</div>
+        <span class="nav-label">Giỏ Hàng<br>장바구니</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('profileScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="nav-label">Tài Khoản<br>마이페이지</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CATEGORY SCREEN ===================== -->
+  <div class="screen" id="catScreen">
+    <div class="top-bar">
+      <div class="logo">
+        <div class="logo-text">KSX<span>12</span></div>
+        <div class="logo-sub">Danh mục / 카테고리</div>
+      </div>
+      <div class="top-icons">
+        <button class="icon-btn" onclick="showScreen('searchScreen')">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-content">
+      <div class="cat-section-title">Học Tập / 학습</div>
+      <div class="cat-list">
+        <div class="cat-row" onclick="showScreen('docViewScreen')">
+          <div class="cat-row-icon" style="background:var(--green-pale)">📄</div>
+          <div class="cat-row-text">
+            <div class="cat-row-name">Tài Liệu Học / 학습 자료</div>
+            <div class="cat-row-count">156 sản phẩm / 156개 상품</div>
+          </div>
+          <div class="cat-row-arrow">›</div>
+        </div>
+        <div class="cat-row" onclick="showToast('📒 Ghi Chú Nổi Bật / 추천 노트')">
+          <div class="cat-row-icon" style="background:var(--purple-pale)">📒</div>
+          <div class="cat-row-text">
+            <div class="cat-row-name">Ghi Chú Nổi Bật / 추천 노트</div>
+            <div class="cat-row-count">84 sản phẩm / 84개 상품</div>
+          </div>
+          <div class="cat-row-arrow">›</div>
+        </div>
+        <div class="cat-row" onclick="showToast('📝 Đề Thi Thử / 모의고사')">
+          <div class="cat-row-icon" style="background:var(--blue-pale)">📝</div>
+          <div class="cat-row-text">
+            <div class="cat-row-name">Đề Thi Thử / 모의고사</div>
+            <div class="cat-row-count">52 sản phẩm / 52개 상품</div>
+          </div>
+          <div class="cat-row-arrow">›</div>
+        </div>
+      </div>
+
+      <div class="cat-section-title">Văn Phòng Phẩm / 문구류</div>
+      <div class="cat-list">
+        <div class="cat-row" onclick="showToast('✏️ Bút Viết / 필기구')">
+          <div class="cat-row-icon" style="background:var(--yellow-pale)">✏️</div>
+          <div class="cat-row-text">
+            <div class="cat-row-name">Bút Viết / 필기구</div>
+            <div class="cat-row-count">230 sản phẩm / 230개 상품</div>
+          </div>
+          <div class="cat-row-arrow">›</div>
+        </div>
+        <div class="cat-row" onclick="showToast('📓 Sổ Vở / 노트&다이어리')">
+          <div class="cat-row-icon" style="background:var(--green-pale)">📓</div>
+          <div class="cat-row-text">
+            <div class="cat-row-name">Sổ & Vở / 노트&다이어리</div>
+            <div class="cat-row-count">178 sản phẩm / 178개 상품</div>
+          </div>
+          <div class="cat-row-arrow">›</div>
+        </div>
+        <div class="cat-row" onclick="showToast('🗂️ Bìa Hồ Sơ / 서류 파일')">
+          <div class="cat-row-icon" style="background:#F0F0FF">🗂️</div>
+          <div class="cat-row-text">
+            <div class="cat-row-name">Bìa & Hồ Sơ / 서류 파일</div>
+            <div class="cat-row-count">94 sản phẩm / 94개 상품</div>
+          </div>
+          <div class="cat-row-arrow">›</div>
+        </div>
+      </div>
+
+      <div class="cat-section-title">Phụ Kiện / 액세서리</div>
+      <div class="cat-list">
+        <div class="cat-row" onclick="showToast('🎒 Balo & Túi / 가방')">
+          <div class="cat-row-icon" style="background:#FFF0F5">🎒</div>
+          <div class="cat-row-text">
+            <div class="cat-row-name">Balo & Túi / 가방</div>
+            <div class="cat-row-count">45 sản phẩm / 45개 상품</div>
+          </div>
+          <div class="cat-row-arrow">›</div>
+        </div>
+        <div class="cat-row" onclick="showToast('🐻 Linh Vật KSX12 / KSX12 캐릭터')">
+          <div class="cat-row-icon" style="background:#F5F0FF">🐻</div>
+          <div class="cat-row-text">
+            <div class="cat-row-name">Linh Vật KSX12 / KSX12 캐릭터</div>
+            <div class="cat-row-count">28 sản phẩm / 28개 상품</div>
+          </div>
+          <div class="cat-row-arrow">›</div>
+        </div>
+      </div>
+      <div style="height:20px"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('homeScreen')">
+        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="nav-label">홈</span>
+      </div>
+      <div class="nav-item active" onclick="showScreen('catScreen')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span class="nav-label">카테고리</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('wishScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="nav-label">위시리스트</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('cartScreen')">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <div class="nav-badge">2</div>
+        <span class="nav-label">장바구니</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('profileScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="nav-label">마이페이지</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== WISHLIST SCREEN ===================== -->
+  <div class="screen" id="wishScreen">
+    <div class="top-bar">
+      <div class="logo">
+        <div class="logo-text">KSX<span>12</span></div>
+        <div class="logo-sub">Yêu thích / 위시리스트</div>
+      </div>
+    </div>
+    <div class="scroll-content">
+      <div class="wish-grid">
+        <div class="wish-card" onclick="showToast('❤️ Đã thêm vào giỏ hàng / 장바구니 추가!')">
+          <div class="wish-img green-bg">📔</div>
+          <div class="wish-info">
+            <div class="wish-name">Sổ Tay Smart<br>스마트 노트북</div>
+            <div class="wish-price">35.000₫ <span class="wish-heart">❤️</span></div>
+          </div>
+        </div>
+        <div class="wish-card" onclick="showToast('❤️ Đã thêm vào giỏ hàng / 장바구니 추가!')">
+          <div class="wish-img yellow-bg">✏️</div>
+          <div class="wish-info">
+            <div class="wish-name">Bút Màu Pastel<br>파스텔 색연필</div>
+            <div class="wish-price">45.000₫ <span class="wish-heart">❤️</span></div>
+          </div>
+        </div>
+        <div class="wish-card" onclick="showToast('❤️ Đã thêm vào giỏ hàng / 장바구니 추가!')">
+          <div class="wish-img" style="background:#F5F0FF">🐻</div>
+          <div class="wish-info">
+            <div class="wish-name">Gấu Bông KSX12<br>곰인형</div>
+            <div class="wish-price">120.000₫ <span class="wish-heart">❤️</span></div>
+          </div>
+        </div>
+        <div class="wish-card" onclick="showToast('❤️ Đã thêm vào giỏ hàng / 장바구니 추가!')">
+          <div class="wish-img blue-bg">🖊️</div>
+          <div class="wish-info">
+            <div class="wish-name">Bút Highlight 6<br>형광펜 6색</div>
+            <div class="wish-price">22.000₫ <span class="wish-heart">❤️</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('homeScreen')">
+        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="nav-label">홈</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('catScreen')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span class="nav-label">카테고리</span>
+      </div>
+      <div class="nav-item active" onclick="showScreen('wishScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="nav-label">위시리스트</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('cartScreen')">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <div class="nav-badge">2</div>
+        <span class="nav-label">장바구니</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('profileScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="nav-label">마이페이지</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CART SCREEN ===================== -->
+  <div class="screen" id="cartScreen">
+    <div class="top-bar">
+      <div class="logo">
+        <div class="logo-text">KSX<span>12</span></div>
+        <div class="logo-sub">Giỏ hàng / 장바구니</div>
+      </div>
+    </div>
+    <div class="scroll-content">
+      <div class="cart-list">
+        <div class="cart-item">
+          <div class="cart-item-img" style="background:var(--green-pale)">📔</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">Sổ Tay Smart / 스마트 노트북</div>
+            <div class="cart-item-variant">Màu xanh lá / 그린</div>
+            <div class="cart-item-price">35.000₫</div>
+            <div class="qty-ctrl">
+              <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+            </div>
+          </div>
+          <div class="cart-del" onclick="showToast('🗑️ Đã xóa / 삭제됨')">🗑️</div>
+        </div>
+        <div class="cart-item">
+          <div class="cart-item-img" style="background:var(--yellow-pale)">✏️</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">Bút Màu Pastel / 파스텔 색연필</div>
+            <div class="cart-item-variant">Bộ 12 màu / 12색 세트</div>
+            <div class="cart-item-price">45.000₫</div>
+            <div class="qty-ctrl">
+              <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+              <span class="qty-num">2</span>
+              <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+            </div>
+          </div>
+          <div class="cart-del" onclick="showToast('🗑️ Đã xóa / 삭제됨')">🗑️</div>
+        </div>
+      </div>
+      <div class="cart-summary">
+        <div class="summary-row"><span>Tạm tính / 상품금액</span><span>125.000₫</span></div>
+        <div class="summary-row"><span>Phí ship / 배송비</span><span style="color:var(--green);font-weight:800">Miễn phí 🎉</span></div>
+        <div class="summary-row"><span>Giảm giá HS / 학생 할인</span><span style="color:#FF6B6B">−12.500₫</span></div>
+        <div class="divider"></div>
+        <div class="summary-row total"><span>Tổng cộng / 합계</span><span>112.500₫</span></div>
+      </div>
+      <button class="checkout-btn" onclick="showToast('✅ Đặt hàng thành công! / 주문 완료!')">
+        🛒 Đặt Hàng Ngay / 지금 주문하기
+      </button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('homeScreen')">
+        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="nav-label">홈</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('catScreen')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span class="nav-label">카테고리</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('wishScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="nav-label">위시리스트</span>
+      </div>
+      <div class="nav-item active" onclick="showScreen('cartScreen')">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <div class="nav-badge">2</div>
+        <span class="nav-label">장바구니</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('profileScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="nav-label">마이페이지</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PROFILE SCREEN ===================== -->
+  <div class="screen" id="profileScreen">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px 0;background:var(--blue-pale);flex-shrink:0">
+      <div class="logo-text" style="font-size:22px">KSX<span style="color:var(--blue)">12</span></div>
+      <div style="display:flex;gap:12px">
+        <button class="icon-btn" style="background:white" onclick="showToast('🔔 Thông báo / 알림')">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--blue);stroke-width:2;fill:none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <div class="badge" style="background:var(--pink)"></div>
+        </button>
+        <button class="icon-btn" style="background:white" onclick="showToast('⚙️ Cài đặt / 설정')">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--blue);stroke-width:2;fill:none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-content">
+      <div class="profile-header">
+        <div class="profile-row">
+          <div class="avatar-wrap">
+            <div class="avatar">🐻</div>
+            <div class="avatar-edit">✏️</div>
+          </div>
+          <div class="profile-info">
+            <div class="profile-grade">고2 / Lớp 11</div>
+            <div class="profile-name">김하늘 <span class="verified">✅</span></div>
+            <div class="profile-motto">오늘의 노력이, 내일의 나를 만듭니다. ✨<br><small style="font-size:10px;color:var(--text-light)">Nỗ lực hôm nay tạo nên tương lai!</small></div>
+          </div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-header">
+            <div class="goal-icon">🎯</div>
+            <div class="goal-label">Mục tiêu học tập / 나의 학습 목표</div>
+          </div>
+          <div class="goal-content">
+            <div class="goal-text">
+              <div class="goal-name">서울대학교 경영학과 합격</div>
+              <div class="goal-name" style="font-size:12px;color:var(--text-mid);font-weight:600">ĐH Seoul - Khoa Quản trị</div>
+              <div class="goal-dday"><em>D-DAY</em> <span>247</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:68%"></div></div>
+              <div class="progress-pct">68%</div>
+            </div>
+            <div class="goal-school-img">🏛️</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-menu">
+        <div class="menu-item" onclick="showToast('📄 Hồ Sơ Của Tôi / 나의 서류')">
+          <div class="menu-item-icon" style="background:var(--blue-pale)">📄</div>
+          <div class="menu-item-text">
+            <div class="menu-item-name">Hồ Sơ Của Tôi / 나의 서류</div>
+            <div class="menu-item-sub">학교생활기록부, 자기소개서, 추천서 등</div>
+          </div>
+          <div class="menu-item-badge" style="color:var(--blue)">5개</div>
+          <div class="menu-item-arrow">›</div>
+        </div>
+        <div class="menu-item" onclick="showToast('🛍️ Lịch Sử Đơn Hàng / 주문 내역')">
+          <div class="menu-item-icon" style="background:var(--green-pale)">🛍️</div>
+          <div class="menu-item-text">
+            <div class="menu-item-name">Lịch Sử Đơn Hàng / 주문 내역</div>
+            <div class="menu-item-sub">신청한 서류 및 서비스 내역</div>
+          </div>
+          <div class="menu-item-badge" style="color:var(--green)">3건</div>
+          <div class="menu-item-arrow">›</div>
+        </div>
+        <div class="menu-item" onclick="showToast('📊 Tiến Độ Học Tập / 학습 진행 현황')">
+          <div class="menu-item-icon" style="background:var(--purple-pale)">📊</div>
+          <div class="menu-item-text">
+            <div class="menu-item-name">Tiến Độ Học Tập / 학습 진행 현황</div>
+            <div class="menu-item-sub">최근 학습 활동과 성취도</div>
+          </div>
+          <div class="menu-item-badge" style="color:var(--purple)">76%</div>
+          <div class="menu-item-arrow">›</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('docViewScreen')">
+          <div class="menu-item-icon" style="background:var(--yellow-pale)">📚</div>
+          <div class="menu-item-text">
+            <div class="menu-item-name">Tài Liệu Đang Đọc / 학습 중인 자료</div>
+            <div class="menu-item-sub">KSX12 Study Guide.pdf - 16% hoàn thành</div>
+          </div>
+          <div class="menu-item-badge" style="color:#D4A017">16%</div>
+          <div class="menu-item-arrow">›</div>
+        </div>
+      </div>
+      <div style="height:20px"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('homeScreen')">
+        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="nav-label">홈</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('catScreen')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span class="nav-label">카테고리</span>
+      </div>
+      <div class="nav-item" onclick="showToast('📚 Học tập / 학습')">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="nav-label">학습</span>
+      </div>
+      <div class="nav-item" onclick="showToast('🔔 Thông báo / 알림')">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="nav-label">알림</span>
+      </div>
+      <div class="nav-item active" onclick="showScreen('profileScreen')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="nav-label">마이페이지</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== DOCUMENT VIEWER SCREEN ===================== -->
+  <div class="screen doc-screen" id="docViewScreen">
+    <div class="doc-top">
+      <button class="doc-back" onclick="showScreen('homeScreen')">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <span style="font-size:16px;margin:0 4px">☰</span>
+      <div class="doc-title">KSX12 Study Guide.pdf</div>
+      <span style="font-size:16px;margin:0 4px;cursor:pointer" onclick="showToast('🔍 Tìm kiếm / 검색')">🔍</span>
+      <div class="doc-more" onclick="showToast('⋯ Thêm tuỳ chọn / 더보기')">⋯</div>
+    </div>
+    <div class="doc-toolbar">
+      <button class="tool-btn" onclick="showToast('⬚ Chọn / 선택')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-dasharray="4 2"/></svg>
+        Chọn<br>선택
+      </button>
+      <button class="tool-btn active">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Highlight<br>하이라이트
+      </button>
+      <button class="tool-btn" onclick="showToast('🔖 Bookmark / 북마크')">
+        <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        Bookm.<br>북마크
+      </button>
+      <button class="tool-btn" onclick="showToast('📝 Ghi chú / 노트')">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Ghi chú<br>노트
+      </button>
+      <button class="tool-btn" onclick="showToast('⋯ Thêm / 더보기')">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="4" height="4" rx="1"/><rect x="2" y="10" width="4" height="4" rx="1"/><rect x="2" y="17" width="4" height="4" rx="1"/><rect x="9" y="3" width="4" height="4" rx="1"/><rect x="9" y="10" width="4" height="4" rx="1"/><rect x="9" y="17" width="4" height="4" rx="1"/></svg>
+        Thêm<br>더보기
+      </button>
+    </div>
+    <div class="doc-content">
+      <div class="doc-chapter">CHAPTER 01</div>
+      <div class="doc-heading">수능 국어, 이렇게 준비하자<br><span style="font-size:16px;color:var(--text-mid);font-weight:600">Chuẩn Bị Ngữ Văn CSAT như thế nào</span></div>
+      <div class="doc-divider"></div>
+      <div class="doc-para">
+        수능 국어는 단순한 암기력이 아닌, 독해력·사고력·표현력을 종합적으로 평가하는 시험입니다.
+        <span style="color:var(--text-mid);font-size:12px"> / Ngữ văn CSAT không chỉ kiểm tra trí nhớ mà đánh giá tổng hợp khả năng đọc hiểu, tư duy, diễn đạt.</span>
+      </div>
+      <div class="doc-para">
+        <span class="highlight">출제 의도를 파악하고, 지문을 구조적으로 이해하는 것이 핵심입니다.</span>
+        <span style="color:var(--text-mid);font-size:12px"> / Nắm bắt ý đồ ra đề và hiểu cấu trúc bài đọc là điểm mấu chốt.</span>
+      </div>
+
+      <div class="sticky-note">중요! ☆<br>Quan trọng!</div>
+
+      <div class="doc-sub-heading"><span class="doc-sub-num">01</span> 독해의 기본 원리 / Nguyên Tắc Đọc Hiểu</div>
+      <ul class="doc-list">
+        <li>글의 목적, 주제, 구조를 파악하며 읽기 <span style="font-size:11px;color:var(--text-light)">/ Đọc nắm bắt mục đích, chủ đề, cấu trúc</span></li>
+        <li>핵심 정보와 세부 정보를 구분하기 <span style="font-size:11px;color:var(--text-light)">/ Phân biệt thông tin cốt lõi và chi tiết</span></li>
+        <li class="purple-ul">글쓴이의 관점과 의도를 비판적으로 이해하기 <span style="font-size:11px;color:var(--text-light)">/ Hiểu phê phán quan điểm tác giả</span></li>
+      </ul>
+
+      <div style="clear:both"></div>
+
+      <div class="doc-sub-heading"><span class="doc-sub-num">02</span> 문제 풀이 전략 / Chiến Lược Giải Đề</div>
+      <div class="sticky-note sticky-note2">시간 배분 연습!<br>실전에서는 침착하게 😊<br><span style="font-size:10px">Luyện phân bổ thời gian!</span></div>
+      <div class="doc-strategy">
+        <div class="strategy-item">
+          <div class="strategy-icon">🔍</div>
+          <div class="strategy-text">
+            <div class="strategy-name">지문 분석 / Phân Tích Đoạn Văn</div>
+            <div class="strategy-desc">문단별 핵심 내용을 요약하며 읽기 / Đọc tóm tắt nội dung chính từng đoạn</div>
+          </div>
+        </div>
+        <div class="strategy-item">
+          <div class="strategy-icon">📋</div>
+          <div class="strategy-text">
+            <div class="strategy-name">선지 체크 / Kiểm Tra Đáp Án</div>
+            <div class="strategy-desc">선지의 근거를 지문에서 찾기 / Tìm căn cứ đáp án trong văn bản</div>
+          </div>
+        </div>
+        <div class="strategy-item">
+          <div class="strategy-icon">✅</div>
+          <div class="strategy-text">
+            <div class="strategy-name">오답 제거 / Loại Trừ Sai</div>
+            <div class="strategy-desc">명확히 틀린 선지부터 제거하기 / Loại trừ đáp án rõ ràng sai trước</div>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both;height:10px"></div>
+    </div>
+    <div class="doc-footer">
+      <div class="page-info">34 / 208</div>
+      <input type="range" class="page-slider" min="1" max="208" value="34" oninput="this.nextElementSibling.textContent=Math.round(this.value/208*100)+'%'">
+      <div class="page-pct">16%</div>
+    </div>
+    <div class="doc-nav">
+      <div class="doc-nav-item" onclick="showToast('☰ Mục lục / 목차')">
+        <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        <span>Mục lục<br>목차</span>
+      </div>
+      <div class="doc-nav-item" onclick="showToast('📄 Trang / 페이지')">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span>Trang<br>페이지</span>
+      </div>
+      <div class="doc-nav-item" onclick="showToast('⊞ Chế độ đôi / 듀얼 모드')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/></svg>
+        <span>Màn đôi<br>듀얼 모드</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PRODUCT DETAIL SCREEN ===================== -->
+  <div class="screen" id="productScreen">
+    <div class="screen-header" style="padding:12px 16px">
+      <button class="back-btn" onclick="goBack()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="screen-title" id="pdTitle">Chi Tiết Sản Phẩm</div>
+      <button class="icon-btn" style="background:var(--green-pale)" onclick="showToast('🔗 Đã chia sẻ! / 공유됨!')">
+        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </button>
+    </div>
+    <div class="scroll-content">
+      <div class="prod-detail-img" id="pdImg">📔</div>
+      <div class="prod-detail-body">
+        <div class="prod-detail-tag">✨ Nổi bật / 추천 상품</div>
+        <div class="prod-detail-name" id="pdName">Sổ Tay Thông Minh</div>
+        <div style="font-size:13px;color:var(--text-light);font-weight:600;margin-top:2px" id="pdNameKr">스마트 노트북</div>
+        <div class="prod-detail-price" id="pdPrice"><small>50.000₫</small>35.000₫</div>
+        <div class="prod-detail-desc" id="pdDesc">Sổ tay premium 200 trang, giấy chống nước. Thiết kế hiện đại dành riêng cho học sinh.</div>
+        <div style="background:var(--green-pale);border-radius:12px;padding:12px 14px;margin-bottom:16px">
+          <div style="font-size:12px;font-weight:800;color:var(--green-dark);margin-bottom:6px">✅ Ưu đãi học sinh / 학생 혜택</div>
+          <div style="font-size:12px;color:var(--text-mid)">🎓 Giảm thêm 10% khi đăng nhập tài khoản học sinh<br>🚚 Miễn phí giao hàng / 무료 배송<br>💝 Tích điểm thưởng KSX / KSX 포인트 적립</div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-actions">
+      <button class="add-cart-btn" onclick="showToast('🛒 Đã thêm vào giỏ! / 장바구니 추가!')">🛒 Thêm giỏ / 장바구니</button>
+      <button class="buy-btn" onclick="showToast('⚡ Mua ngay! / 바로 구매!')">⚡ Mua ngay / 구매</button>
+    </div>
+  </div>
+
+  <!-- ===================== SEARCH SCREEN ===================== -->
+  <div class="screen" id="searchScreen">
+    <div class="screen-header">
+      <button class="back-btn" onclick="goBack()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="screen-title">Tìm Kiếm / 검색</div>
+    </div>
+    <div class="search-bar-wrap">
+      <input class="search-input" type="text" placeholder="Tìm sản phẩm... / 상품 검색..." id="searchInput" oninput="filterResults(this.value)">
+      <button class="search-go" onclick="showToast('🔍 Đang tìm... / 검색 중...')">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="tags-wrap">
+      <div class="tag" onclick="searchTag(this)">📔 Sổ tay</div>
+      <div class="tag" onclick="searchTag(this)">✏️ Bút viết / 필기구</div>
+      <div class="tag" onclick="searchTag(this)">📚 Tài liệu / 학습자료</div>
+      <div class="tag" onclick="searchTag(this)">🐻 KSX12</div>
+      <div class="tag" onclick="searchTag(this)">🎒 Balo / 가방</div>
+      <div class="tag" onclick="searchTag(this)">💡 Flash Sale</div>
+    </div>
+    <div style="padding:0 20px 8px;font-size:12px;font-weight:700;color:var(--text-light)">Kết quả / 검색 결과</div>
+    <div class="scroll-content">
+      <div class="search-results" id="searchResults">
+        <div class="result-item" onclick="showProductDetail('📔','Sổ Tay Thông Minh','스마트 노트북','Sổ tay premium 200 trang','35.000₫','50.000₫')">
+          <div class="result-img">📔</div>
+          <div class="result-info">
+            <div class="result-name">Sổ Tay Smart / 스마트 노트북</div>
+            <div class="result-sub">Văn phòng phẩm / 문구류</div>
+          </div>
+          <div class="result-price">35.000₫</div>
+        </div>
+        <div class="result-item" onclick="showProductDetail('✏️','Bút Màu Pastel','파스텔 색연필','Bộ 12 màu chuẩn học sinh','45.000₫','65.000₫')">
+          <div class="result-img" style="background:var(--yellow-pale)">✏️</div>
+          <div class="result-info">
+            <div class="result-name">Bút Màu Pastel / 파스텔 색연필</div>
+            <div class="result-sub">Bút viết / 필기구</div>
+          </div>
+          <div class="result-price">45.000₫</div>
+        </div>
+        <div class="result-item" onclick="showProductDetail('📄','Tài Liệu Ngữ Văn','국어 학습자료','PDF học tập cao cấp cho kỳ thi','25.000₫','40.000₫')">
+          <div class="result-img" style="background:var(--purple-pale)">📄</div>
+          <div class="result-info">
+            <div class="result-name">Tài Liệu Ngữ Văn / 국어 자료</div>
+            <div class="result-sub">Tài liệu học / 학습자료</div>
+          </div>
+          <div class="result-price">25.000₫</div>
+        </div>
+        <div class="result-item" onclick="showProductDetail('🐻','Gấu Bông KSX12','KSX12 곰인형','Linh vật KSX12 chính hãng, 25cm','120.000₫','150.000₫')">
+          <div class="result-img" style="background:#F5F0FF">🐻</div>
+          <div class="result-info">
+            <div class="result-name">Gấu Bông KSX12 / KSX12 곰인형</div>
+            <div class="result-sub">Linh vật / 캐릭터</div>
+          </div>
+          <div class="result-price">120.000₫</div>
+        </div>
+        <div class="result-item" onclick="showProductDetail('🖊️','Bút Highlight 6 Màu','형광펜 6색','Highlight 6 màu neon siêu bền','22.000₫','35.000₫')">
+          <div class="result-img" style="background:var(--blue-pale)">🖊️</div>
+          <div class="result-info">
+            <div class="result-name">Bút Highlight / 형광펜</div>
+            <div class="result-sub">Bút viết / 필기구</div>
+          </div>
+          <div class="result-price">22.000₫</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+</div><!-- /phone-shell -->
+
+<script>
+let prevScreen = 'homeScreen';
+let currentScreen = 'homeScreen';
+
+function showScreen(id) {
+  prevScreen = currentScreen;
+  currentScreen = id;
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  // scroll to top
+  const sc = document.getElementById(id).querySelector('.scroll-content');
+  if (sc) sc.scrollTop = 0;
+}
+
+function goBack() {
+  showScreen(prevScreen);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function changeQty(btn, delta) {
+  const span = btn.parentElement.querySelector('.qty-num');
+  let v = parseInt(span.textContent) + delta;
+  if (v < 1) v = 1;
+  span.textContent = v;
+}
+
+function showProductDetail(img, nameVi, nameKr, desc, price, oldPrice) {
+  document.getElementById('pdImg').textContent = img;
+  document.getElementById('pdName').textContent = nameVi;
+  document.getElementById('pdNameKr').textContent = nameKr;
+  document.getElementById('pdDesc').textContent = desc;
+  document.getElementById('pdPrice').innerHTML = '<small>' + oldPrice + '</small>' + price;
+  document.getElementById('pdTitle').textContent = nameVi;
+  showScreen('productScreen');
+}
+
+function searchTag(el) {
+  document.getElementById('searchInput').value = el.textContent.replace(/[📔✏️📚🐻🎒💡]/g,'').trim();
+  showToast('🔍 ' + el.textContent);
+}
+
+function filterResults(v) {
+  // demo: just show toast
+}
+
+// Animate progress bar on profile load
+document.addEventListener('click', function(e) {
+  if (e.target.closest('[onclick*="profileScreen"]')) {
+    setTimeout(() => {
+      const fill = document.querySelector('.progress-fill');
+      if (fill) { fill.style.width = '0'; setTimeout(() => fill.style.width = '68%', 100); }
+    }, 200);
+  }
+});
+
+// Auto-update time
+function updateTime() {
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2,'0');
+  const m = now.getMinutes().toString().padStart(2,'0');
+  document.querySelector('.status-bar span').textContent = h + ':' + m;
+}
+updateTime();
+setInterval(updateTime, 30000);
+
+// Flash sale countdown
+let countdownSec = 2*3600 + 45*60 + 12;
+setInterval(() => {
+  countdownSec--;
+  if (countdownSec < 0) countdownSec = 3600;
+  const h = Math.floor(countdownSec/3600).toString().padStart(2,'0');
+  const m = Math.floor((countdownSec%3600)/60).toString().padStart(2,'0');
+  const s = (countdownSec%60).toString().padStart(2,'0');
+  const el = document.querySelector('[style*="background:#FF6B6B"]');
+  if (el) el.textContent = h+':'+m+':'+s;
+}, 1000);
+</script>
+</body>
+</html>
