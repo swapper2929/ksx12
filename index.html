@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KSX12 - Nhúng trang web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #0a0f1e;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Thanh header */
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            background: linear-gradient(120deg, #38bdf8, #a855f7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .logo span {
+            font-size: 0.8rem;
+            background: #1e293b;
+            padding: 2px 8px;
+            border-radius: 40px;
+            margin-left: 8px;
+            color: #94a3b8;
+            font-weight: normal;
+        }
+
+        .url-bar {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            gap: 8px;
+            background: #1e293b;
+            padding: 4px 12px;
+            border-radius: 48px;
+            align-items: center;
+            border: 1px solid #334155;
+        }
+
+        .url-bar input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 8px 4px;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            outline: none;
+            font-family: monospace;
+        }
+
+        .url-bar button {
+            background: #3b82f6;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 32px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .url-bar button:hover {
+            background: #2563eb;
+            transform: scale(0.96);
+        }
+
+        .info {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            background: #0f172a80;
+            padding: 6px 12px;
+            border-radius: 24px;
+        }
+
+        /* Container iframe chiếm toàn bộ phần còn lại */
+        .iframe-container {
+            flex: 1;
+            position: relative;
+            background: #020617;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Fallback nếu iframe bị chặn */
+        .error-overlay {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #1e1b4bcc;
+            backdrop-filter: blur(8px);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #cbd5e1;
+            pointer-events: none;
+            z-index: 20;
+            font-family: monospace;
+        }
+
+        @media (max-width: 640px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .url-bar {
+                max-width: 100%;
+            }
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            .info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <h1>KSX12 <span>Embedder</span></h1>
+    </div>
+    <div class="url-bar">
+        <input type="text" id="webUrl" placeholder="Nhập URL (https://...)" value="https://example.com">
+        <button id="loadBtn">Tải & nhúng</button>
+    </div>
+    <div class="info">
+        ⚡ Nhúng an toàn | Hỗ trợ hầu hết web
+    </div>
+</div>
+
+<div class="iframe-container">
+    <iframe id="embeddedFrame" 
+            src="https://ksx12showcase-vwwpfoat.manus.space" 
+            title="Trang web được nhúng"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            referrerpolicy="strict-origin-when-cross-origin"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads allow-modals allow-popups-to-escape-sandbox">
+    </iframe>
+    <div class="error-overlay">
+        🔒 Nếu không hiển thị: Trang web từ chối nhúng (X-Frame-Options)
+    </div>
+</div>
+
+<script>
+    (function() {
+        const iframe = document.getElementById('embeddedFrame');
+        const urlInput = document.getElementById('webUrl');
+        const loadBtn = document.getElementById('loadBtn');
+
+        // Hàm chuẩn hóa URL
+        function normalizeUrl(input) {
+            let url = input.trim();
+            if (!url) return null;
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+            try {
+                // Kiểm tra URL hợp lệ
+                new URL(url);
+                return url;
+            } catch(e) {
+                return null;
+            }
+        }
+
+        // Tải trang vào iframe
+        function loadWebsite(rawUrl) {
+            const finalUrl = normalizeUrl(rawUrl);
+            if (!finalUrl) {
+                alert('URL không hợp lệ. Vui lòng nhập đúng định dạng (vd: google.com hoặc https://example.com)');
+                return false;
+            }
+            
+            // Cập nhật lại ô input cho sạch
+            urlInput.value = finalUrl;
+            
+            // Thêm hiệu ứng loading nhẹ (tùy chọn)
+            iframe.style.opacity = '0.6';
+            setTimeout(() => { iframe.style.opacity = '1'; }, 500);
+            
+            // Gán src mới cho iframe
+            iframe.src = finalUrl;
+            return true;
+        }
+
+        // Sự kiện nút bấm
+        loadBtn.addEventListener('click', () => {
+            loadWebsite(urlInput.value);
+        });
+
+        // Nhấn Enter trong ô input cũng load
+        urlInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                loadWebsite(urlInput.value);
+            }
+        });
+
+        // Ví dụ mặc định: bạn có thể thay url mặc định ở đây
+        // Hiện tại đang là "https://example.com" -> có thể test với bất kỳ web nào cho phép nhúng
+        // Gợi ý: thử "https://wikipedia.org" hoặc "https://github.com"
+        // LƯU Ý: Các trang như Google, Facebook, YouTube thường chặn iframe (X-Frame-Options)
+        
+        // Nếu muốn trang mặc định khác, hãy sửa dòng value trong input và src của iframe bên trên
+        // Ví dụ dùng Wikipedia (cho phép nhúng đơn giản):
+        const defaultDemo = "https://ksx12showcase-vwwpfoat.manus.space";
+        // Load trang demo mặc định sau 100ms (để tránh xung đột)
+        setTimeout(() => {
+            if (iframe.src === "https://example.com" || iframe.src === "about:blank") {
+                loadWebsite(defaultDemo);
+            }
+        }, 100);
+    })();
+</script>
+</body>
+</html>
