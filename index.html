@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>ksx12.qzz.io | Domain Holding Page - Cài đặt WebAPK</title>
+  <!-- Google Fonts & Font Awesome (ES5 friendly, external but lightweight) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- PWA / WebAPK Manifest - Cho phép Chrome cài đặt như ứng dụng -->
+  <link rel="manifest" href="data:application/manifest+json,{
+    %22name%22: %22ksx12.qzz.io%22,
+    %22short_name%22: %22ksx12%22,
+    %22start_url%22: %22.%22,
+    %22display%22: %22standalone%22,
+    %22theme_color%22: %221c4e6f%22,
+    %22background_color%22: %22%23f0f5fe%22,
+    %22description%22: %22Domain holding page for ksx12.qzz.io - Administrator Ho%C3%A0ng M%E1%BA%A1nh Ph%C6%B0%E1%BB%9Bc%22,
+    %22icons%22: [
+      {
+        %22src%22: %22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231c4e6f'/%3E%3Ctext x='50' y='67' font-size='50' text-anchor='middle' fill='white' font-family='monospace'%3E📦%3C/text%3E%3C/svg%3E%22,
+        %22sizes%22: %22any%22,
+        %22type%22: %22image/svg+xml%22
+      },
+      {
+        %22src%22: %22data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHWSURBVHgB7d1BTsJQFAbgNwQ3oEtwA7oEN+AEXIJL0BWoG2gFdQO6gYYuQZfgSIu+i1egGYmy0bykMGlfX2f6/ZO0aeel7c+bmRcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP+FUopBHMdPXdd9703q+77nOE6XJEm+jDGGYRjineM4j4/H41Ecx1/knHPfpq7rJpZlzZumiVbWzvV9/0bGGJdSinWe5z2apuFhGGhGmWUZBl3X0YyKyQxJkgQ3TdPIcRxc13UKRVGQx3kcyTgO9VpFUUSe53He9/1rrfWjbdueZVkkiqIoVlVVpCiKOp1OYe/7PsuyLKIoqmzbJpZl0el0CvswDGmWZbTrurRt25JlWU/r/d/3fU6327HOOUcAAAAAAAAAAAAAUBMXhBDiYJomKaW4wJqmSZqmSQghxLMsq2FZVmOe54nnedR1XeJ5nudZluW2bavu+36N45h2HId0HMfUdd3Gtm1abhTFi+d5cdu2NeM4Jp7nxfM8b2zbthVd19WMMYbjOGRdV9N1347jUOC6LuG6LucBAAAAAAAAAAAAAAAAAAAAAAAAAADwL3wDHbmfP4wY/1UAAAAASUVORK5CYII=%22,
+        %22sizes%22: %22192x192%22,
+        %22type%22: %22image/png%22
+      },
+      {
+        %22src%22: %22data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJPSURBVHgB7d1LjtpQFAbg2w9dgC7AAIMegAHAAHoAvQN6BvQAegBdQC+gB+AyUN0BvYBqQHXj2PGR0pXyIiF6n1SvE+f8zh/HVQEAAAAAAAAAAAAAAAAAAAAAAAAAANxFrfXI87zUWs+Hho7jmFmWpdq2LU3TpHmeqXmeJ+q6TpZlJXmeJ4rjuKiqStR1nagoinIcx7yqKkme50VRFInnedE8z/Nc1y3rupY8z4vHcRz7siyL5nm+nOd5YZpmYV23pdZ6Nk3TF67rCtd1P5um+TWO44Vpmh9N07zOsiwJwzC5ZgAAAAAAAAAAAAAAAAAAAACgBavghUophVJK0TAMSZZl9DzPp23bUtd1qeu6VJ7nyTRNOY5jstaaPM+TjDFkGIak67rkPM+TLMtyHMcxqaqqssYYsizLJ9/3vRxHUVSlbdsKpZTieZ7ndV1X2rZtqdZ6dl3XF0VRVF3XS7XWo23bKq21Yq1NQ0EQEAAAAAAAAAAAAAAAAAAAAAAAtzIMA/VdFw3DgEIIIYQQQgghhBBCCCGEkH/JsixUFEXqui5VKpVKpZJkWUZZlkVRFJFlWZRlWU/TNL3ruq5s2zZN07Touq7IeZ5nGWNI13VJ0zRJ0zRNpmmayDzPc2zbNqmqKpVKpVKpVCqVSqVSqVQqlUqlUqlUKpVKpVKpVCqV6r/VBz79Tk7tCQjPAAAAAElFTkSuQmCC%22,
+        %22sizes%22: %22512x512%22,
+        %22type%22: %22image/png%22
+      }
+    ]
+  }">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #f0f5fe 0%, #e9eef5 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      color: #1a2c3e;
+    }
+
+    /* main card container */
+    .domain-card {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(0px);
+      border-radius: 3rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .domain-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* header gradient area */
+    .domain-header {
+      background: linear-gradient(135deg, #0b2b3b 0%, #1c4e6f 100%);
+      padding: 2.2rem 2rem 1.8rem;
+      text-align: center;
+      color: white;
+    }
+
+    .domain-name {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      word-break: break-all;
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 0.3rem 1.2rem;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+      margin-bottom: 0.8rem;
+    }
+
+    .domain-badge {
+      background: #ffcd3c;
+      color: #1e3b4a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 1rem;
+      border-radius: 20px;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-holder {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .status-holder span i {
+      margin-right: 6px;
+    }
+
+    /* content section */
+    .domain-content {
+      padding: 2rem 2rem 1.8rem;
+    }
+
+    .admin-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #f8fafd;
+      padding: 1.2rem 1.5rem;
+      border-radius: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf7;
+    }
+
+    .admin-icon {
+      background: #1c4e6f;
+      width: 58px;
+      height: 58px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 8px 14px rgba(0,0,0,0.05);
+    }
+
+    .admin-details h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0f2f3f;
+    }
+
+    .admin-details p {
+      color: #4b6b7e;
+      font-weight: 500;
+      margin-top: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .info-item {
+      flex: 1;
+      min-width: 180px;
+      background: #ffffff;
+      border-radius: 1.6rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid #e9edf2;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: all 0.2s;
+    }
+
+    .info-item i {
+      font-size: 1.5rem;
+      color: #2c7da0;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .info-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #6c8a9c;
+    }
+
+    .info-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a3c4e;
+      margin-top: 6px;
+      word-break: break-word;
+    }
+
+    /* countdown timer block */
+    .timer-block {
+      background: #eef3fc;
+      border-radius: 1.8rem;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .timer-title {
+      font-weight: 600;
+      color: #0f516e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timer-title i {
+      font-size: 1.3rem;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      font-family: monospace;
+      font-weight: 700;
+    }
+
+    .time-unit {
+      text-align: center;
+      background: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      min-width: 60px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .time-number {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #1c5a77;
+      line-height: 1;
+    }
+
+    .time-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #6f8ea0;
+    }
+
+    .action-note {
+      background: #ffffffd9;
+      border-radius: 1.2rem;
+      padding: 1rem 1.4rem;
+      text-align: center;
+      font-size: 0.85rem;
+      border-left: 4px solid #ffae00;
+      color: #2c4d62;
+    }
+
+    .action-note i {
+      color: #f5a623;
+      margin-right: 6px;
+    }
+    
+    /* WebAPK Install Button Style */
+    .install-pwa-card {
+      background: linear-gradient(105deg, #eaf5ff 0%, #ffffff 100%);
+      border-radius: 1.5rem;
+      padding: 1rem 1.5rem;
+      margin: 0.5rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border: 1px solid #cde3f5;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+    }
+    
+    .install-text {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .install-text i {
+      font-size: 1.8rem;
+      color: #1c5a77;
+    }
+    
+    .install-text span {
+      font-weight: 500;
+      color: #1a4d66;
+    }
+    
+    .install-text strong {
+      background: #ffcd3c;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      color: #1e3b4a;
+    }
+    
+    .install-btn {
+      background: #1c4e6f;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .install-btn i {
+      font-size: 1.1rem;
+    }
+    
+    .install-btn:hover {
+      background: #0f3f58;
+      transform: scale(0.97);
+    }
+    
+    .install-hint {
+      font-size: 0.7rem;
+      color: #6b8ea3;
+      margin-top: 5px;
+    }
+
+    .footer-note {
+      text-align: center;
+      padding: 1rem 1.5rem 1.5rem;
+      font-size: 0.75rem;
+      color: #6b8ca0;
+      border-top: 1px solid #e2e9f0;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 550px) {
+      .domain-name {
+        font-size: 1.3rem;
+      }
+      .info-grid {
+        flex-direction: column;
+      }
+      .countdown {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .time-unit {
+        min-width: 50px;
+        padding: 4px 8px;
+      }
+      .time-number {
+        font-size: 1.2rem;
+      }
+      .domain-header {
+        padding: 1.5rem;
+      }
+      .domain-content {
+        padding: 1.5rem;
+      }
+      .install-pwa-card {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+      }
+      .install-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .glow-text {
+      font-weight: 500;
+    }
+
+    button, .fake-btn {
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="domain-card">
+  <div class="domain-header">
+    <div class="domain-name">
+      ksx12.qzz.io
+    </div>
+    <div class="domain-badge">
+      <i class="fas fa-globe"></i> PARKED · RESERVED DOMAIN
+    </div>
+    <div class="status-holder">
+      <span><i class="fas fa-check-circle"></i> Active holding</span>
+      <span><i class="fas fa-lock"></i> Administrator managed</span>
+      <span><i class="fas fa-mobile-alt"></i> Hỗ trợ WebAPK</span>
+    </div>
+  </div>
+
+  <div class="domain-content">
+    <!-- Admin info: Hoàng Mạnh Phước -->
+    <div class="admin-section">
+      <div class="admin-icon">
+        <i class="fas fa-user-shield"></i>
+      </div>
+      <div class="admin-details">
+        <h3>Hoàng Mạnh Phước</h3>
+        <p><i class="fas fa-tag"></i> Administrator · Authorized domain owner</p>
+      </div>
+    </div>
+
+    <!-- Registration & Expiration dates -->
+    <div class="info-grid">
+      <div class="info-item">
+        <i class="fas fa-calendar-alt"></i>
+        <div class="info-label">Registration date</div>
+        <div class="info-value" id="regDateDisplay">May 10, 2026</div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-calendar-check"></i>
+        <div class="info-label">Expiration date</div>
+        <div class="info-value" id="expDateDisplay">May 10, 2027</div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-hourglass-half"></i>
+        <div class="info-label">Time until expiry</div>
+        <div class="info-value" id="expiryCounterLabel">-- day(s)</div>
+      </div>
+    </div>
+
+    <!-- WebAPK Install Section (Chrome) -->
+    <div class="install-pwa-card" id="installCard" style="display: none;">
+      <div class="install-text">
+        <i class="fab fa-chrome"></i>
+        <span><strong>Cài đặt WebAPK</strong> — Dùng Chrome để cài ứng dụng này lên màn hình chính</span>
+      </div>
+      <button class="install-btn" id="installBtn">
+        <i class="fas fa-download"></i> Cài đặt ứng dụng
+      </button>
+    </div>
+    
+    <!-- Thông báo cho trình duyệt không hỗ trợ hoặc đã cài -->
+    <div id="installMessage" style="margin-bottom: 0.8rem; font-size:0.8rem; text-align:center; background:#eef2f7; border-radius:2rem; padding:0.4rem; display:none;"></div>
+
+    <!-- Live countdown timer : updates every second (JS ES5) -->
+    <div class="timer-block">
+      <div class="timer-title">
+        <i class="fas fa-hourglass-start"></i> 
+        <span>Exact countdown to expiration</span>
+      </div>
+      <div class="countdown" id="countdownContainer">
+        <div class="time-unit"><span class="time-number" id="daysVal">00</span><div class="time-label">Days</div></div>
+        <div class="time-unit"><span class="time-number" id="hoursVal">00</span><div class="time-label">Hours</div></div>
+        <div class="time-unit"><span class="time-number" id="minsVal">00</span><div class="time-label">Mins</div></div>
+        <div class="time-unit"><span class="time-number" id="secsVal">00</span><div class="time-label">Secs</div></div>
+      </div>
+    </div>
+
+    <div class="action-note">
+      <i class="fas fa-info-circle"></i> This domain is registered and maintained by <strong>Hoàng Mạnh Phước</strong>. 
+      The domain <strong>ksx12.qzz.io</strong> is actively reserved for future projects or forwarding. 
+      For inquiries, please contact the domain administrator.
+      <br><i class="fab fa-android"></i> <strong>Trên Chrome Android:</strong> Nhấn "Cài đặt ứng dụng" để tạo WebAPK chạy riêng.
+    </div>
+  </div>
+  <div class="footer-note">
+    <i class="fas fa-registered"></i> © 2026 · Domain holding page | WHOIS: Registered until May 10, 2027 | PWA Ready
+  </div>
+</div>
+
+<script>
+  (function() {
+    "use strict";
+    
+    // ----- FIXED DATES BASED ON GIVEN INFO -----
+    var REGISTRATION_RAW = "May 10, 2026";
+    var EXPIRATION_RAW = "May 10, 2027";
+    
+    var regDateElem = document.getElementById("regDateDisplay");
+    var expDateElem = document.getElementById("expDateDisplay");
+    if (regDateElem) regDateElem.innerText = REGISTRATION_RAW;
+    if (expDateElem) expDateElem.innerText = EXPIRATION_RAW;
+    
+    var expirationDate = new Date(Date.UTC(2027, 4, 10, 0, 0, 0));
+    
+    var daysLabelSpan = document.getElementById("expiryCounterLabel");
+    var daysValSpan = document.getElementById("daysVal");
+    var hoursValSpan = document.getElementById("hoursVal");
+    var minsValSpan = document.getElementById("minsVal");
+    var secsValSpan = document.getElementById("secsVal");
+    
+    function updateTimer() {
+      var now = new Date();
+      var nowMs = now.getTime();
+      var expiryMs = expirationDate.getTime();
+      var diffMs = expiryMs - nowMs;
+      var isExpired = diffMs <= 0;
+      
+      if (isExpired) {
+        if (daysLabelSpan) daysLabelSpan.innerText = "Expired";
+        if (daysValSpan) daysValSpan.innerText = "00";
+        if (hoursValSpan) hoursValSpan.innerText = "00";
+        if (minsValSpan) minsValSpan.innerText = "00";
+        if (secsValSpan) secsValSpan.innerText = "00";
+        return;
+      }
+      
+      var totalSeconds = Math.floor(diffMs / 1000);
+      var days = Math.floor(totalSeconds / 86400);
+      var hours = Math.floor((totalSeconds % 86400) / 3600);
+      var minutes = Math.floor((totalSeconds % 3600) / 60);
+      var seconds = totalSeconds % 60;
+      
+      if (daysLabelSpan) daysLabelSpan.innerText = days + " day(s) left";
+      if (daysValSpan) daysValSpan.innerText = days < 10 ? '0' + days : '' + days;
+      if (hoursValSpan) hoursValSpan.innerText = hours < 10 ? '0' + hours : '' + hours;
+      if (minsValSpan) minsValSpan.innerText = minutes < 10 ? '0' + minutes : '' + minutes;
+      if (secsValSpan) secsValSpan.innerText = seconds < 10 ? '0' + seconds : '' + seconds;
+    }
+    
+    updateTimer();
+    var intervalId = setInterval(updateTimer, 1000);
+    
+    window.addEventListener('beforeunload', function() {
+      if (intervalId) clearInterval(intervalId);
+    });
+    
+    document.title = "ksx12.qzz.io | Domain registered - Hoàng Mạnh Phước (WebAPK)";
+    
+    // ---------- PWA / WebAPK Installation (Chrome, Edge, Samsung Internet) ----------
+    var deferredPrompt = null;
+    var installCard = document.getElementById('installCard');
+    var installBtn = document.getElementById('installBtn');
+    var installMessageDiv = document.getElementById('installMessage');
+    
+    // Lắng nghe sự kiện beforeinstallprompt (Chrome / Android)
+    window.addEventListener('beforeinstallprompt', function(e) {
+      // Ngăn trình duyệt tự hiện popup mặc định nếu muốn, nhưng vẫn để xử lý
+      e.preventDefault();
+      deferredPrompt = e;
+      // Hiển thị card cài đặt
+      if (installCard) installCard.style.display = 'flex';
+      console.log('beforeinstallprompt đã kích hoạt, có thể cài WebAPK');
+    });
+    
+    // Xử lý khi nhấn nút cài đặt
+    if (installBtn) {
+      installBtn.addEventListener('click', function() {
+        if (!deferredPrompt) {
+          if (installMessageDiv) {
+            installMessageDiv.style.display = 'block';
+            installMessageDiv.innerHTML = '<i class="fas fa-info-circle"></i> Trình duyệt chưa kích hoạt cài đặt. Hãy thử dùng Chrome Android và truy cập lại.';
+            setTimeout(function() {
+              if (installMessageDiv) installMessageDiv.style.display = 'none';
+            }, 4000);
+          }
+          return;
+        }
+        // Hiện hộp thoại cài đặt WebAPK
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function(choiceResult) {
+          if (choiceResult.outcome === 'accepted') {
+            if (installMessageDiv) {
+              installMessageDiv.style.display = 'block';
+              installMessageDiv.innerHTML = '<i class="fas fa-check-circle"></i> Ứng dụng đã được cài đặt! Kiểm tra màn hình chính.';
+              installMessageDiv.style.background = "#d9f0e3";
+              setTimeout(function() {
+                if (installMessageDiv) installMessageDiv.style.display = 'none';
+              }, 5000);
+            }
+            if (installCard) installCard.style.display = 'none';
+          } else {
+            if (installMessageDiv) {
+              installMessageDiv.style.display = 'block';
+              installMessageDiv.innerHTML = '<i class="fas fa-times-circle"></i> Bạn đã từ chối cài đặt ứng dụng.';
+              setTimeout(function() {
+                if (installMessageDiv) installMessageDiv.style.display = 'none';
+              }, 3000);
+            }
+          }
+          deferredPrompt = null;
+        });
+      });
+    }
+    
+    // Sự kiện khi app đã được cài thành công (tuỳ chọn)
+    window.addEventListener('appinstalled', function(evt) {
+      if (installMessageDiv) {
+        installMessageDiv.style.display = 'block';
+        installMessageDiv.innerHTML = '<i class="fas fa-rocket"></i> WebAPK đã sẵn sàng! Khởi chạy từ màn hình chính.';
+        installMessageDiv.style.background = "#c8e7d5";
+        setTimeout(function() {
+          if (installMessageDiv) installMessageDiv.style.display = 'none';
+        }, 4000);
+      }
+      if (installCard) installCard.style.display = 'none';
+    });
+    
+    // Kiểm tra nếu đã chạy trong standalone mode (ứng dụng đã mở), ẩn card cài đặt
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+      if (installCard) installCard.style.display = 'none';
+      if (installMessageDiv) {
+        installMessageDiv.style.display = 'block';
+        installMessageDiv.innerHTML = '<i class="fas fa-home"></i> Bạn đang dùng ứng dụng WebAPK của ksx12.qzz.io.';
+        installMessageDiv.style.background = "#e1ecf4";
+        setTimeout(function() {
+          if (installMessageDiv) installMessageDiv.style.display = 'none';
+        }, 3000);
+      }
+    }
+    
+    // Fallback cho Chrome desktop nhưng vẫn hiển thị nếu event không kích hoạt (tuỳ chọn)
+    setTimeout(function() {
+      if (!deferredPrompt && installCard && installCard.style.display !== 'flex' && !window.matchMedia('(display-mode: standalone)').matches) {
+        // Nếu sau 2 giây mà không có beforeinstallprompt, có thể trình duyệt không hỗ trợ,
+        // nhưng vẫn hiển thị card hướng dẫn với thông báo thủ công (chỉ hiển thị nhẹ nhàng)
+        // Kiểm tra xem có phải Android Chrome không (thông qua userAgent gợi ý)
+        var isMobileChrome = /Android/i.test(navigator.userAgent) && /Chrome/i.test(navigator.userAgent);
+        if (isMobileChrome) {
+          installCard.style.display = 'flex';
+          var installHint = document.querySelector('.install-hint');
+          if (!installHint) {
+            var hintSpan = document.createElement('div');
+            hintSpan.className = 'install-hint';
+            hintSpan.innerHTML = '<i class="fas fa-ellipsis-h"></i> Nhấn menu Chrome (ba chấm) → "Cài đặt ứng dụng" nếu không thấy nút bên trên.';
+            if (installCard) installCard.appendChild(hintSpan);
+          }
+        }
+      }
+    }, 2000);
+    
+    // Xử lý style khi expired (giữ nguyên từ layout cũ)
+    function checkExpiredStyle() {
+      var nowCheck = new Date();
+      if (nowCheck.getTime() >= expirationDate.getTime()) {
+        var timerBlockDiv = document.querySelector('.timer-block');
+        if (timerBlockDiv) {
+          timerBlockDiv.style.background = "#ffe6e3";
+          var timerTitleSpan = timerBlockDiv.querySelector('.timer-title span');
+          if (timerTitleSpan) timerTitleSpan.innerText = "Domain expired on May 10, 2027";
+        }
+        var actionNoteDiv = document.querySelector('.action-note');
+        if (actionNoteDiv && actionNoteDiv.innerHTML.indexOf('expired') === -1) {
+          actionNoteDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <strong>Notice:</strong> Domain expired on May 10, 2027. Please contact administrator Hoàng Mạnh Phước for renewal.';
+        }
+      }
+    }
+    checkExpiredStyle();
+    setInterval(checkExpiredStyle, 1000);
+    
+  })();
+</script>
+</body>
+</html>
